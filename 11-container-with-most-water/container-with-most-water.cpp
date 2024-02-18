@@ -9,9 +9,7 @@ public:
         int right = height.size() - 1;
         
         while (left < right) {
-            int currentArea = std::min(height[left], height[right]) * (right - left);
-            maxArea = std::max(maxArea, currentArea);
-            
+            maxArea = std::max(maxArea, std::min(height[left], height[right]) * (right - left));
             if (height[left] < height[right]) {
                 left++;
             } else {
