@@ -1,19 +1,17 @@
 class Solution {
 public:
     vector<int> getRow(int rowIndex) {
-        vector<vector<int>> tria (rowIndex + 1);
-        int colNum = 1;
-        for(int r = 0; r <= rowIndex; r++){
-            
-           vector<int> row(colNum, 1);
-           
-           tria[r] = row;
-           
-           for(int c = 1; c < colNum-1; c++){
-              tria[r][c] =  tria[r-1][c-1] + tria[r-1][c];
-           }
-           colNum++;
-        } 
-        return tria[rowIndex];
+        vector<int> result(rowIndex + 1, 0);
+        result[0] = 1;
+
+        for (int row = 1; row <= rowIndex; ++row) {
+            result[row] = 1;
+
+            for (int index = row - 1; index > 0; --index) {
+                result[index] += result[index - 1];
+            }
+        }
+
+        return result;
     }
 };
